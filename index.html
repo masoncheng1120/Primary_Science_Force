@@ -1,34 +1,141 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Online Learning — Main Menu</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="menu">
-      <img src="logo_news.png" alt="Caritas Wu Cheng-Chung College Logo" style="max-width:500px;width:100%;height:auto;margin-bottom:1rem;">
-      <h1 class="title">Online Learning Platform</h1>
-      <p style="font-size:0.95rem;color:var(--muted);margin-bottom:1.5rem;">Topic - Potential Energy, Kinetic Energy and Friction</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primary Science Menu</title>
+  <style>
+    /* Simple responsive layout for main menu */
+    :root{
+      --bg1:#f0f4ff;
+      --bg2:#e8fff7;
+      --primary:#2563eb;
+      --primary-contrast:#fff;
+      --secondary:#059669;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:#0f172a;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .menu{
+      text-align:center;
+      padding:3rem 2rem;
+      border-radius:12px;
+      box-shadow:0 6px 30px rgba(16,24,40,0.08);
+      backdrop-filter:blur(6px);
+      background: rgba(255, 255, 255, 0.6); /* Added slight white background for readability */
+      max-width:720px;
+      width:92%;
+    }
+    .title{
+      margin:0 0 1.5rem 0;
+      font-size:clamp(1.5rem,3.2vw,2.5rem);
+      letter-spacing:0.2px;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+    .buttons{
+      display:flex;
+      gap:1rem;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:0.75rem;
+      padding:0.9rem 1.25rem;
+      border:0;
+      border-radius:10px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      color:var(--primary-contrast);
+      text-decoration: none; /* Ensures links look like buttons */
+    }
+    .btn svg{display:block}
+    .btn:focus{outline:3px solid rgba(37,99,235,0.18); outline-offset:3px}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--primary); box-shadow:0 6px 18px rgba(37,99,235,0.18)}
+    .btn-secondary{background:var(--secondary); box-shadow:0 6px 18px rgba(5,150,105,0.12)}
 
-      <div class="buttons" role="navigation" aria-label="Main menu">
-        <button class="btn btn-primary" id="videoBtn" aria-label="Video lessons">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
-          </svg>
-          <span>Video</span>
-        </button>
+    .topic-card {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .topic-card:last-child {
+      margin-bottom: 0;
+    }
+    .topic-title {
+      margin: 0 0 1rem 0;
+      font-size: 1.25rem;
+      color: #1e293b;
+    }
 
-        <button class="btn btn-secondary" id="quizBtn" aria-label="Quizzes">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2a7 7 0 00-7 7v2a5 5 0 005 5h1v3l3-3h2a3 3 0 003-3v-4a7 7 0 00-7-7z" fill="currentColor" />
+    @media (max-width:420px){
+      .buttons{flex-direction:column}
+      .btn{width:100%; justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu">
+    <h1 class="title">Primary Science</h1>
+    <p class="subtitle">Select a topic below to begin your learning journey.</p>
+    
+    <!-- Learning Friction Topic -->
+    <div class="topic-card">
+      <h2 class="topic-title">Learning Friction</h2>
+      <div class="buttons">
+        <a href="#" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <span>Quiz</span>
-        </button>
+          Video
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Quiz
+        </a>
       </div>
-    </main>
+    </div>
 
-    <script src="script.js?v=2.0"></script>
-  </body>
+    <!-- Learning Density Topic -->
+    <div class="topic-card">
+      <h2 class="topic-title">Learning Density</h2>
+      <div class="buttons">
+        <a href="#" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Video
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Quiz
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
 </html>
