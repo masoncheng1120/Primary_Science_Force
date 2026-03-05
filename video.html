@@ -1,22 +1,95 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Video Lessons — Online Learning</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="menu" style="max-width:900px;">
-      <h1 class="title">Video Lessons</h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Lessons — Online Learning</title>
+  <style>
+    :root {
+      --bg1: #f0f4ff;
+      --bg2: #e8fff7;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .menu {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 30px rgba(16,24,40,0.08);
+      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.8);
+      max-width: 900px;
+      width: 100%;
+    }
+    .title {
+      margin: 0 0 0.5rem 0;
+      font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+    }
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      border: 0;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-youtube {
+      background: #ef4444; 
+      color: white;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.25);
+    }
+    .btn-outline { 
+      background: #f3f4f6; 
+      color: #0f172a; 
+      border: 1px solid #e2e8f0; 
+      font-size: 1rem;
+      padding: 0.9rem 1.25rem;
+    }
+    
+    .video-container { margin: 2rem auto; text-align: center; }
+    .nav-container { display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <main class="menu">
+    <h1 class="title">Video Lessons</h1>
+    <p class="subtitle">Watch our curated YouTube lessons to strengthen your understanding.</p>
 
-      <div style="margin:2rem auto;text-align:center;">
-        <a href="https://www.youtube.com/watch?v=vw0N-kGrMvk" target="_blank" class="btn btn-primary" style="display:inline-block;padding:1rem 2rem;background:#ef4444;color:white;border-radius:8px;text-decoration:none;font-weight:bold;font-size:1.1rem;">Watch on YouTube</a>
-      </div>
+    <div class="video-container">
+      <a href="https://www.youtube.com/watch?v=vw0N-kGrMvk" target="_blank" class="btn btn-youtube">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="white"></polygon>
+        </svg>
+        Watch on YouTube
+      </a>
+    </div>
 
-      <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;">
-        <a class="btn btn-secondary" href="index.html" style="background:#f3f4f6;color:#0f172a;box-shadow:none;border:1px solid rgba(0,0,0,0.06);">Back to Home</a>
-      </div>
-    </main>
-  </body>
+    <div class="nav-container">
+      <a class="btn btn-outline" href="index.html">Back to Home</a>
+    </div>
+  </main>
+</body>
 </html>
