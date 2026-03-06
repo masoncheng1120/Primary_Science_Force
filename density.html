@@ -343,22 +343,26 @@
       let question = "";
       let answerVal = 0;
       let answerUnit = "";
+      let explanation = "";
 
       if (type === 0) {
         question = `An irregular object has a mass of <b>${m} g</b> and displaces a volume of <b>${v} cm³</b>. <br><br>What is its density?`;
         answerVal = d;
         answerUnit = "g/cm³";
+        explanation = `Density = Mass ÷ Volume (${m} ÷ ${v} = ${d})`;
       } else if (type === 1) {
         question = `An object has a density of <b>${d} g/cm³</b> and a volume of <b>${v} cm³</b>. <br><br>What is its mass?`;
         answerVal = m;
         answerUnit = "g";
+        explanation = `Mass = Density × Volume (${d} × ${v} = ${m})`;
       } else {
         question = `An object has a mass of <b>${m} g</b> and a density of <b>${d} g/cm³</b>. <br><br>What is its volume?`;
         answerVal = v;
         answerUnit = "cm³";
+        explanation = `Volume = Mass ÷ Density (${m} ÷ ${d} = ${v})`;
       }
 
-      return { question, answerVal, answerUnit };
+      return { question, answerVal, answerUnit, explanation };
     }
 
     function loadQuestion() {
@@ -369,8 +373,13 @@
       document.getElementById('progress-text').innerText = `${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
       
       // Reset inputs and feedback
-      document.getElementById('answer-input').value = "";
-      document.getElementById('unit-input').value = "";
+      const answerInput = document.getElementById('answer-input');
+      const unitInput = document.getElementById('unit-input');
+      answerInput.value = "";
+      answerInput.disabled = false;
+      unitInput.value = "";
+      unitInput.disabled = false;
+      
       document.getElementById('feedback-msg').className = "feedback";
       document.getElementById('feedback-msg').style.display = "none";
       
@@ -380,8 +389,10 @@
     }
 
     function checkAnswer() {
-      const userVal = parseFloat(document.getElementById('answer-input').value);
-      const userUnit = document.getElementById('unit-input').value;
+      const answerInput = document.getElementById('answer-input');
+      const unitInput = document.getElementById('unit-input');
+      const userVal = parseFloat(answerInput.value);
+      const userUnit = unitInput.value;
       const feedbackEl = document.getElementById('feedback-msg');
 
       if (isNaN(userVal) || userUnit === "") {
@@ -389,23 +400,30 @@
         feedbackEl.className = "feedback error";
         return;
       }
+      
+      // Lock inputs after submission
+      answerInput.disabled = true;
+      unitInput.disabled = true;
 
       // Check if value matches (allow slight float precision tolerance)
       const isValCorrect = Math.abs(userVal - currentProblem.answerVal) < 0.05;
       const isUnitCorrect = userUnit === currentProblem.answerUnit;
 
+      // Provide the step-by-step breakdown
+      const explanationHtml = `<br><span style="font-size: 0.95rem; opacity: 0.9; display: block; margin-top: 0.75rem;">Calculation: ${currentProblem.explanation}</span>`;
+
       if (isValCorrect && isUnitCorrect) {
-        feedbackEl.innerText = "Correct! Great job.";
+        feedbackEl.innerHTML = `Correct! Great job.${explanationHtml}`;
         feedbackEl.className = "feedback success";
         score++;
       } else if (!isValCorrect && isUnitCorrect) {
-        feedbackEl.innerHTML = `Incorrect calculation. <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.`;
+        feedbackEl.innerHTML = `Incorrect calculation. <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.${explanationHtml}`;
         feedbackEl.className = "feedback error";
       } else if (isValCorrect && !isUnitCorrect) {
-        feedbackEl.innerHTML = `Right number, wrong unit! <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.`;
+        feedbackEl.innerHTML = `Right number, wrong unit! <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.${explanationHtml}`;
         feedbackEl.className = "feedback error";
       } else {
-        feedbackEl.innerHTML = `Incorrect. <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.`;
+        feedbackEl.innerHTML = `Incorrect. <br>The correct answer was <b>${currentProblem.answerVal} ${currentProblem.answerUnit}</b>.${explanationHtml}`;
         feedbackEl.className = "feedback error";
       }
 
