@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculating Density Quiz</title>
+  <title>Calculating Density Quiz — Cheng Chung Cup</title>
+  <!-- Imported formal serif font (Merriweather) and clean sans-serif (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg1: #f0f4ff;
-      --bg2: #e8fff7;
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --primary-contrast: #fff;
-      --secondary: #059669;
-      --muted: #6b7280;
-      --danger: #ef4444;
-      --success: #10b981;
-      --text-dark: #0f172a;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --accent-gold: #FAD948;
+      --accent-hover: #fcf1b6;
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      
+      /* Status Colors adapted for dark mode */
+      --danger: #f87171;
+      --danger-bg: rgba(239, 68, 68, 0.1);
+      --danger-border: rgba(239, 68, 68, 0.3);
+      --success: #34d399;
+      --success-bg: rgba(16, 185, 129, 0.1);
+      --success-border: rgba(16, 185, 129, 0.3);
     }
     
     * { box-sizing: border-box; }
@@ -23,23 +30,25 @@
     html, body { height: 100%; margin: 0; }
     
     body {
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+      background-attachment: fixed;
+      color: var(--text-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 2rem 1rem;
     }
 
     .app-container {
       display: flex;
-      max-width: 850px;
+      max-width: 900px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(16, 24, 40, 0.1);
-      backdrop-filter: blur(10px);
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       flex-direction: column;
     }
@@ -51,52 +60,47 @@
     /* Left Panel: Visuals & Formula */
     .panel-left {
       flex: 1;
-      background: #ffffff;
       padding: 2.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    @media (min-width: 640px) {
+      .panel-left {
+        border-bottom: none;
+        border-right: 1px solid var(--border-color);
+      }
     }
 
     .formula-box {
-      background: var(--bg1);
-      border: 2px dashed var(--primary);
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 8px;
+      padding: 1.5rem;
       text-align: center;
       margin-bottom: 2rem;
       width: 100%;
     }
-    .formula-box h3 { margin: 0 0 0.5rem 0; color: var(--primary); font-size: 1.1rem; }
-    .formula-box p { margin: 0; font-size: 1.25rem; font-weight: bold; color: var(--text-dark); }
-    .formula-box small { color: var(--muted); font-size: 0.85rem; display: block; margin-top: 0.5rem; }
-
-    /* The irregular shape simulation */
-    .blob-container {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .formula-box h3 { 
+      margin: 0 0 0.75rem 0; 
+      color: var(--accent-gold); 
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem; 
     }
-    
-    .blob {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: var(--primary);
-      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-      animation: morph 4s ease-in-out infinite alternate;
-      transition: background-color 0.5s ease;
-      box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2);
+    .formula-box p { 
+      margin: 0; 
+      font-size: 1.25rem; 
+      font-weight: bold; 
+      color: var(--text-light); 
     }
-
-    @keyframes morph {
-      0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-      100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    .formula-box small { 
+      color: var(--text-muted); 
+      font-size: 0.9rem; 
+      display: block; 
+      margin-top: 0.75rem; 
     }
 
     /* Right Panel: Quiz Area */
@@ -115,14 +119,28 @@
       margin-bottom: 1.5rem;
     }
 
-    .quiz-header h2 { margin: 0; font-size: 1.5rem; }
-    .progress { color: var(--muted); font-weight: bold; }
+    .quiz-header h2 { 
+      margin: 0; 
+      font-size: 1.5rem; 
+      font-family: 'Merriweather', serif;
+      color: var(--text-light);
+    }
+    .progress { 
+      color: var(--accent-gold); 
+      font-weight: 600; 
+    }
 
     .question-text {
       font-size: 1.15rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
       min-height: 80px;
+      color: #e2e8f0;
+    }
+    
+    .question-text b {
+      color: var(--accent-gold);
+      font-weight: 600;
     }
 
     .input-group {
@@ -133,15 +151,23 @@
 
     input[type="number"], select {
       padding: 0.85rem;
-      border: 2px solid #cbd5e1;
-      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       font-size: 1rem;
+      color: var(--text-light);
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s ease;
+    }
+    
+    select option {
+      background: var(--bg-card);
+      color: var(--text-light);
     }
 
     input[type="number"]:focus, select:focus {
-      border-color: var(--primary);
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 2px rgba(250, 217, 72, 0.2);
     }
 
     input[type="number"] { flex: 2; }
@@ -154,44 +180,83 @@
       gap: 0.5rem;
       padding: 0.9rem 1.5rem;
       border: 0;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 1.05rem;
       font-weight: 600;
+      font-family: 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.2s ease;
-      color: var(--primary-contrast);
       width: 100%;
     }
     
-    .btn-primary { background: var(--primary); box-shadow: 0 4px 14px rgba(37,99,235,0.2); }
-    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-primary { 
+      background: var(--accent-gold); 
+      color: var(--bg-dark); 
+    }
+    
+    .btn-primary:hover { 
+      background: var(--accent-hover); 
+      transform: translateY(-2px); 
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      color: var(--text-light);
+      border-color: var(--text-muted);
+    }
     
     .feedback {
       margin-top: 1rem;
       padding: 1rem;
       border-radius: 8px;
-      font-weight: 600;
+      font-weight: 500;
       text-align: center;
       display: none;
+      line-height: 1.5;
     }
-    .feedback.success { display: block; background: #d1fae5; color: var(--success); }
-    .feedback.error { display: block; background: #fee2e2; color: var(--danger); }
+    .feedback b { font-weight: 700; }
+    .feedback.success { 
+      display: block; 
+      background: var(--success-bg); 
+      color: var(--success); 
+      border: 1px solid var(--success-border);
+    }
+    .feedback.error { 
+      display: block; 
+      background: var(--danger-bg); 
+      color: var(--danger); 
+      border: 1px solid var(--danger-border);
+    }
 
     /* Results Screen */
     #results-screen { display: none; text-align: center; }
+    
+    #results-screen h2 {
+      font-family: 'Merriweather', serif;
+      margin-bottom: 2rem;
+    }
+    
     .grade-circle {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: var(--primary);
-      color: white;
+      background: var(--accent-gold);
+      color: var(--bg-dark);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.5rem;
       font-weight: bold;
       margin: 0 auto 1.5rem auto;
-      box-shadow: 0 10px 20px rgba(37,99,235,0.3);
+      box-shadow: 0 10px 20px rgba(250, 217, 72, 0.15);
+      border: 4px solid var(--bg-card);
+      outline: 2px dashed var(--accent-gold);
+      outline-offset: 4px;
     }
 
     .hidden { display: none !important; }
@@ -206,16 +271,11 @@
       <div class="formula-box">
         <h3>Density Formula</h3>
         <p>Density = <span style="display:inline-block; vertical-align:middle; text-align:center;">
-            <span style="border-bottom:2px solid; display:block;">Mass</span>
+            <span style="border-bottom:2px solid var(--text-muted); display:block; padding-bottom: 2px; margin-bottom: 2px;">Mass</span>
             Volume
           </span>
         </p>
         <small>d = m / v</small>
-      </div>
-
-      <div class="blob-container">
-        <div class="blob" id="material-blob"></div>
-        <span style="position: absolute; color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Object</span>
       </div>
     </div>
 
@@ -253,10 +313,10 @@
       <div id="results-screen">
         <h2>Quiz Complete!</h2>
         <div class="grade-circle" id="final-score">5/5</div>
-        <p style="margin-bottom: 2rem; color: var(--muted); font-size: 1.1rem;" id="grade-message">Great job!</p>
-        <div style="display: flex; gap: 1rem;">
+        <p style="margin-bottom: 2.5rem; color: var(--text-muted); font-size: 1.1rem;" id="grade-message">Great job!</p>
+        <div style="display: flex; gap: 1rem; flex-direction: column;">
           <button class="btn btn-primary" onclick="startQuiz()">Retry Quiz</button>
-          <button class="btn btn-primary" style="background: var(--muted);" onclick="window.location.href='quiz_menu.html'">Back to Menu</button>
+          <button class="btn btn-outline" onclick="window.location.href='quiz_menu.html'">Back to Menu</button>
         </div>
       </div>
 
@@ -268,9 +328,6 @@
     let currentQuestionIndex = 0;
     let score = 0;
     let currentProblem = {};
-
-    // Colors to simulate different materials for the blob
-    const materialColors = ["#2563eb", "#059669", "#d97706", "#7c3aed", "#db2777", "#ea580c"];
 
     function generateProblem() {
       // Generate volume: 2 to 20 cm³ (whole numbers for simplicity)
@@ -320,10 +377,6 @@
       // Toggle buttons
       document.getElementById('submit-btn').classList.remove('hidden');
       document.getElementById('next-btn').classList.add('hidden');
-
-      // Change blob color
-      const randomColor = materialColors[Math.floor(Math.random() * materialColors.length)];
-      document.getElementById('material-blob').style.backgroundColor = randomColor;
     }
 
     function checkAnswer() {
