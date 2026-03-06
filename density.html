@@ -380,8 +380,9 @@
       unitInput.value = "";
       unitInput.disabled = false;
       
-      document.getElementById('feedback-msg').className = "feedback";
-      document.getElementById('feedback-msg').style.display = "none";
+      const feedbackEl = document.getElementById('feedback-msg');
+      feedbackEl.className = "feedback";
+      feedbackEl.style.display = "none"; // Hide initially
       
       // Toggle buttons
       document.getElementById('submit-btn').classList.remove('hidden');
@@ -395,13 +396,16 @@
       const userUnit = unitInput.value;
       const feedbackEl = document.getElementById('feedback-msg');
 
+      // Force the feedback element to display
+      feedbackEl.style.display = "block";
+
       if (isNaN(userVal) || userUnit === "") {
         feedbackEl.innerText = "Please enter a number and select a unit.";
         feedbackEl.className = "feedback error";
         return;
       }
       
-      // Lock inputs after submission
+      // Lock inputs after submission to prevent changes while viewing feedback
       answerInput.disabled = true;
       unitInput.disabled = true;
 
@@ -427,7 +431,7 @@
         feedbackEl.className = "feedback error";
       }
 
-      // Toggle buttons
+      // Hide submit and show next button to control flow
       document.getElementById('submit-btn').classList.add('hidden');
       document.getElementById('next-btn').classList.remove('hidden');
     }
