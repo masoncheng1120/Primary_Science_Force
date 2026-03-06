@@ -3,79 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Video Lessons — Online Learning</title>
+  <title>Friction Video Lesson — Cheng Chung Cup</title>
+  <!-- Imported formal serif font (Merriweather) and clean sans-serif (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg1: #f0f4ff;
-      --bg2: #e8fff7;
-      --muted: #6b7280;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --accent-gold: #FAD948;
+      --accent-hover: #fcf1b6;
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
     }
+    
     * { box-sizing: border-box; }
+    
     html, body { height: 100%; margin: 0; }
+    
     body {
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      color: #0f172a;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+      background-attachment: fixed;
+      color: var(--text-light);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem;
     }
+
     .menu {
       text-align: center;
-      padding: 3rem 2rem;
+      padding: 3.5rem 2rem;
       border-radius: 12px;
-      box-shadow: 0 6px 30px rgba(16,24,40,0.08);
-      backdrop-filter: blur(6px);
-      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      background: var(--bg-card);
       max-width: 900px;
       width: 100%;
     }
+
     .title {
-      margin: 0 0 0.5rem 0;
-      font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+      margin: 0 0 1rem 0;
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      color: var(--accent-gold);
     }
+
     .subtitle {
-      color: var(--muted);
+      color: var(--text-muted);
       margin-bottom: 2.5rem;
       font-size: 1.1rem;
+      line-height: 1.5;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.75rem;
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       border: 0;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 1.1rem;
-      font-weight: bold;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
       cursor: pointer;
-      transition: transform .12s ease, box-shadow .12s ease;
+      transition: all 0.2s ease;
       text-decoration: none;
     }
-    .btn:hover { transform: translateY(-2px); }
+
+    .btn:hover { 
+      transform: translateY(-2px); 
+    }
+
     .btn-youtube {
       background: #ef4444; 
       color: white;
       box-shadow: 0 6px 18px rgba(239, 68, 68, 0.25);
     }
+
+    .btn-youtube:hover {
+      background: #dc2626;
+    }
+
     .btn-outline { 
-      background: #f3f4f6; 
-      color: #0f172a; 
-      border: 1px solid #e2e8f0; 
+      background: transparent; 
+      color: var(--text-muted); 
+      border: 1px solid var(--border-color); 
       font-size: 1rem;
-      padding: 0.9rem 1.25rem;
+      padding: 0.9rem 1.5rem;
+    }
+
+    .btn-outline:hover {
+      color: var(--text-light);
+      border-color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
     }
     
-    .video-container { margin: 2rem auto; text-align: center; }
-    .nav-container { display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; }
+    .video-container { 
+      margin: 2.5rem auto; 
+      text-align: center; 
+    }
+
+    .nav-container { 
+      display: flex; 
+      gap: 1rem; 
+      justify-content: center; 
+      margin-top: 3.5rem; 
+    }
   </style>
 </head>
 <body>
   <main class="menu">
-    <h1 class="title">Video Lessons</h1>
-    <p class="subtitle">Watch our curated YouTube lessons to strengthen your understanding.</p>
+    <h1 class="title">Friction Video Lesson</h1>
+    <p class="subtitle">Watch our curated YouTube lesson to strengthen your understanding of friction.</p>
 
     <div class="video-container">
       <a href="https://www.youtube.com/watch?v=vw0N-kGrMvk" target="_blank" class="btn btn-youtube">
